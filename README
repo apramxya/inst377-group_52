@@ -1,7 +1,6 @@
-echo "# inst377-group_52" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin git@github.com:apramxya/inst377-group_52.git
-git push -u origin main
+## Title of your project
+GeoFence Security IP Address Locator
+## Description of your project
+## Description of target browsers (iOS? Android? Which ones?)
+Google Chrome
+## Link to Developer Manual
