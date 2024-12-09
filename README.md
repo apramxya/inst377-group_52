@@ -19,4 +19,5 @@ Google Chrome
 ```bash
 git clone <repository-url>
 cd <repository-folder>
-
+`
+### 2. Install Dependencies
