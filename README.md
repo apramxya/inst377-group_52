@@ -70,10 +70,10 @@ Verify the response accuracy and UI behavior.
 - **Fix in Progress: Enhance error handling on both frontend and backend.**
 
 ### Roadmap
--**User Authentication: Add user login to track and personalize IP query history.**
--**Enhanced Visualization: Use advanced libraries like D3.js for more interactive maps.**
--**Mobile Optimization: Improve responsiveness for smaller devices.**
--**Multi-Language Support: Add localization for international users.**
+- **User Authentication: Add user login to track and personalize IP query history.**
+- **Enhanced Visualization: Use advanced libraries like D3.js for more interactive maps.**
+- **Mobile Optimization: Improve responsiveness for smaller devices.**
+- **Multi-Language Support: Add localization for international users.**
 
 ## API Documentation
 ```
