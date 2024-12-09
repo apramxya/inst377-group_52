@@ -16,8 +16,24 @@ Google Chrome
 ## Installation Guide
 
 ### 1. Clone the Repository
-```bash
+```
 git clone <repository-url>
 cd <repository-folder>
-`
+```
 ### 2. Install Dependencies
+Ensure Node.js is installed, then run:
+```
+npm install
+```
+### 3. Configure Environment Variables
+Create a .env file in the project root directory with the following keys:
+```
+IP_STACK_API_KEY=<your_ipstack_api_key
+DB_HOST=<database_host>
+DB_USER=<database_user>
+DB_PASSWORD=<database_password>
+DB_NAME=<database_name>
+```
+### 4. Set Up the Database
+Create a MySQL database named geofence.
+Import the database schema (if available) or create a table structure to store IP query logs.
