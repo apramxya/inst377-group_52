@@ -62,6 +62,9 @@ Open the application in the browser.
 Test the input functionality by entering valid and invalid IP addresses.
 Verify the response accuracy and UI behavior.
 
+## API Documentation 
+### Unknown
+
 ## Known Issues and Roadmap
 ### Known Issues
 1. Limited API Key Usage: IP Stack API has a limited number of free calls.
