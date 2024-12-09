@@ -37,3 +37,42 @@ DB_NAME=<database_name>
 ### 4. Set Up the Database
 Create a MySQL database named geofence.
 Import the database schema (if available) or create a table structure to store IP query logs.
+
+## Running the Application
+
+### 1. Start the Development Server
+Start the backend server using:
+```
+node server.js
+```
+### 2. Access the Application
+Open a browser and navigate to:
+```
+http://localhost:3000
+```
+## Testing the Application
+
+### 1. Run Unit Tests
+If unit tests are written, use a testing framework like Mocha or Jest:
+```
+npm test
+```
+### 2. Manual Testing
+Open the application in the browser.
+Test the input functionality by entering valid and invalid IP addresses.
+Verify the response accuracy and UI behavior.
+
+## API Documentation
+```
+/docs              - Documentation folder (developer manual and related files)
+/index.html        - Main HTML file
+/about.html        - About page
+/help.html         - Help page
+/styles.css        - CSS styles for the application
+/scripts.js        - JavaScript logic (API integration)
+/server.js         - Backend server (if applicable)
+/.env              - Environment variables file
+```
+
+
+
