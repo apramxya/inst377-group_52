@@ -64,7 +64,10 @@ Verify the response accuracy and UI behavior.
 
 ## Known Issues and Roadmap
 ### Known Issues
-- **1. Limited API Key Usage: IP Stack API has a limited number of free calls.**
+1. Limited API Key Usage: IP Stack API has a limited number of free calls.
+- **Temporary Fix: Use caching in MySQL to reduce API calls.**
+2. Error Handling: The application doesn't provide detailed error messages for invalid IP addresses or network errors.
+- **Fix in Progress: Enhance error handling on both frontend and backend.**
 
 
 ## API Documentation
