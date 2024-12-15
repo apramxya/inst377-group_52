@@ -11,19 +11,21 @@ const IP_QUALITYSCORE_API_KEY = "ZFdPCNJxEToPwn6INfbMI4nwPFaJToMl";
 
 // Supabase Configuration
 const SUPABASE_URL = "https://vlkynsbtdiubxpancxnw.supabase.co";
-const SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsa3luc2J0ZGl1YnhwYW5jeG53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMzNDM4NjcsImV4cCI6MjA0ODkxOTg2N30.0mu_4oKl-ab-EwL4r51NvVcL7ybczVU9Gl28C6VsQOc";
+const SUPABASE_API_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsa3luc2J0ZGl1YnhwYW5jeG53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMzNDM4NjcsImV4cCI6MjA0ODkxOTg2N30.0mu_4oKl-ab-EwL4r51NvVcL7ybczVU9Gl28C6VsQOc";
 const SUPABASE_TABLE = "fraud_scores";
 
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
 
 // IP lookup function using IPStack API
 async function ipLookUp(ip) {
     try {
-        const response = await axios.get(`http://api.ipstack.com/${ip}?access_key=${IPSTACK_API_KEY}`);
+        const response = await axios.get(
+            `http://api.ipstack.com/${ip}?access_key=${IPSTACK_API_KEY}`
+        );
         return response.data;
     } catch (error) {
         throw new Error("Error fetching location data: " + error.message);
@@ -33,7 +35,9 @@ async function ipLookUp(ip) {
 // IP fraud check function using IPQualityScore API
 async function ipSafety(ip) {
     try {
-        const response = await axios.get(`https://ipqualityscore.com/api/json/ip/${IP_QUALITYSCORE_API_KEY}/${ip}`);
+        const response = await axios.get(
+            `https://ipqualityscore.com/api/json/ip/${IP_QUALITYSCORE_API_KEY}/${ip}`
+        );
         return response.data;
     } catch (error) {
         throw new Error("Error fetching fraud data: " + error.message);
@@ -43,16 +47,19 @@ async function ipSafety(ip) {
 // Function to query Supabase for fraud score
 async function getFraudScoreFromSupabase(ip) {
     try {
-        const response = await axios.get(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`, {
-            headers: {
-                apiKey: SUPABASE_API_KEY,
-                Authorization: `Bearer ${SUPABASE_API_KEY}`,
-            },
-            params: {
-                ip: `eq.${ip}`,
-                select: "fraud_score",
-            },
-        });
+        const response = await axios.get(
+            `${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`,
+            {
+                headers: {
+                    apiKey: SUPABASE_API_KEY,
+                    Authorization: `Bearer ${SUPABASE_API_KEY}`,
+                },
+                params: {
+                    ip: `eq.${ip}`,
+                    select: "fraud_score",
+                },
+            }
+        );
         return response.data.length > 0 ? response.data[0].fraud_score : null;
     } catch (error) {
         console.error("Error querying Supabase:", error.message);
@@ -97,7 +104,9 @@ app.get("/getIPData", async (req, res) => {
         res.json(locationData);
     } catch (error) {
         console.error("Error in /getIPData:", error.message);
-        res.status(500).json({ error: "An error occurred while fetching IP data." });
+        res.status(500).json({
+            error: "An error occurred while fetching IP data.",
+        });
     }
 });
 
@@ -118,7 +127,9 @@ app.get("/getFraudScore", async (req, res) => {
         }
 
         // Fetch from API if not in Supabase
-        console.log(`Fraud score for IP ${ip} not found in Supabase. Fetching from API...`);
+        console.log(
+            `Fraud score for IP ${ip} not found in Supabase. Fetching from API...`
+        );
         const fraudData = await ipSafety(ip);
 
         if (fraudData && fraudData.fraud_score !== undefined) {
@@ -129,11 +140,15 @@ app.get("/getFraudScore", async (req, res) => {
 
             return res.json({ ip, fraud_score: fraudScore, source: "api" });
         } else {
-            return res.status(500).json({ error: "Unable to fetch fraud score from API." });
+            return res
+                .status(500)
+                .json({ error: "Unable to fetch fraud score from API." });
         }
     } catch (error) {
         console.error("Error in /getFraudScore:", error.message);
-        return res.status(500).json({ error: "An error occurred while fetching fraud score." });
+        return res
+            .status(500)
+            .json({ error: "An error occurred while fetching fraud score." });
     }
 });
 

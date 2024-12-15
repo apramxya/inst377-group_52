@@ -12,7 +12,10 @@ async function ipLookUp(ip) {
             return data;
         })
         .catch((error) => {
-            console.error("There was a problem with the fetch operation:", error);
+            console.error(
+                "There was a problem with the fetch operation:",
+                error
+            );
         });
 }
 
@@ -28,13 +31,16 @@ async function safety(ip) {
             return data;
         })
         .catch((error) => {
-            console.error("There was a problem with the fetch operation:", error);
+            console.error(
+                "There was a problem with the fetch operation:",
+                error
+            );
         });
 }
 
 async function mapData() {
-    const mapContainer = document.getElementById('map');
-    mapContainer.innerHTML = '';
+    const mapContainer = document.getElementById("map");
+    mapContainer.innerHTML = "";
 
     const ip =
         document.getElementById("octet1").value +
@@ -66,7 +72,8 @@ async function mapData() {
 
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        attribution:
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
     // Add a marker to the map
