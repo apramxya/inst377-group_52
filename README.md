@@ -1,6 +1,6 @@
 ## GeoFence Security IP Address Locator
 ## Project Description
-GeoFence Security IP Address Locator is a web application designed to enhance cybersecurity and user analytics for GeoFence Security, an imaginary company specializing in cybersecurity solutions and geo-targeted insights. This tool allows users to input an IP address and retrieve detailed geographical data and associated security risk levels in real time. The application provides a user-friendly interface for both security teams and marketing teams to access critical location-based data.
+GeoFence Security IP Address Locator is a web application designed to enhance cybersecurity and user analytics for GeoFence Security, an imaginary company specializing in cybersecurity solutions and geo-targeted insights. This tool lets users input an IP address and retrieve detailed geographical data and associated security risk levels in real-time. The application provides a user-friendly interface for security and marketing teams to access critical location-based data.
 ## Description of target browsers (iOS? Android? Which ones?)
 Google Chrome
 # GeoFence Security - Developer Manual
@@ -36,7 +36,24 @@ DB_NAME=<database_name>
 ```
 ### 4. Set Up the Database
 Create a MySQL database named geofence.
-Import the database schema (if available) or create a table structure to store IP query logs.
+Import the database schema (if available) or create a table structure to store IP query logs. You can use the following SQL script to set up the necessary tables:
+'''
+CREATE DATABASE geofence;
+USE geofence;
+
+CREATE TABLE ip_query_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ip_address VARCHAR(45) NOT NULL,
+    country VARCHAR(100),
+    region VARCHAR(100),
+    city VARCHAR  (100),
+    latitude DECIMAL(10,7),
+    longitude DECIMAL(10, 7),
+    risk_level VARCHAR(50),
+    query_time TIMESTAMP DEFAULT CURRENT _TIMESTAMP
+);
+
+'''
 
 ## Running the Application
 
@@ -60,10 +77,7 @@ npm test
 ### 2. Manual Testing
 Open the application in the browser.
 Test the input functionality by entering valid and invalid IP addresses.
-Verify the response accuracy and UI behavior.
-
-## API Documentation 
-### Unknown
+Verify the response accuracy by checking if the geographical and rok data displayed matches the expected results for a given IP address. For UI behavior, ensure that input fields accept valid IP addresses, display error messages for invalid inputs, and maintain responsiveness.
 
 ## Known Issues and Roadmap
 ### Known Issues
