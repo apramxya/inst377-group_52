@@ -88,9 +88,10 @@ async function storeFraudScoreInSupabase(ip, fraudScore) {
 }
 
 // Default route for the root URL
-app.get("/", (req, res) => {
-    res.send("Welcome to the IP Lookup and Fraud Detection API!");
-});
+
+app.get('/', (req, res) => {
+    res.sendFile('public/index.html', { root: __dirname });
+  });
 
 // Endpoint to get location data
 app.get("/getIPData", async (req, res) => {
@@ -156,3 +157,4 @@ app.get("/getFraudScore", async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
+
