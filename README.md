@@ -142,6 +142,8 @@ npm test
 - **Mobile Optimization**: Improve responsiveness for smaller devices.
 - **Multi-Language Support**: Add localization for international users.
 
+## Vercel Deployment Link:
+- https://inst377-group-52-7impgqxvs-aprameya-seshachars-projects.vercel.app
 ---
 
 Documentation for developers is available in the [docs folder](./docs).
