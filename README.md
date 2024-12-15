@@ -1,43 +1,56 @@
-## GeoFence Security IP Address Locator
+# GeoFence Security IP Address Locator
+
+## Project Title
+GeoFence Security IP Address Locator
+
 ## Project Description
-GeoFence Security IP Address Locator is a web application designed to enhance cybersecurity and user analytics for GeoFence Security, an imaginary company specializing in cybersecurity solutions and geo-targeted insights. This tool lets users input an IP address and retrieve detailed geographical data and associated security risk levels in real-time. The application provides a user-friendly interface for security and marketing teams to access critical location-based data.
-## Description of target browsers (iOS? Android? Which ones?)
-Google Chrome
-# GeoFence Security - Developer Manual
+GeoFence Security IP Address Locator is a web application designed to enhance cybersecurity and user analytics for GeoFence Security, an imaginary company specializing in cybersecurity solutions and geo-targeted insights. This tool allows users to input an IP address and retrieve detailed geographical data and associated security risk levels in real-time. The application provides a user-friendly interface for security and marketing teams to access critical location-based data.
+
+## Target Browsers
+- Google Chrome
+- Firefox
+- Microsoft Edge
+
+## Link to Developer Manual
+The Developer Manual can be found in the [docs folder](./docs).
+
+---
+
+# Developer Manual
 
 ## System Requirements
 - **Operating System**: Windows, macOS, or Linux
 - **Node.js**: Version 14 or above
 - **MySQL**: Version 8 or above
-- **Web Browser**: Any modern browser (e.g., Google Chrome, Firefox, Microsoft Edge)
-
----
+- **Web Browser**: Any modern browser
 
 ## Installation Guide
 
 ### 1. Clone the Repository
-```
+```bash
 git clone <repository-url>
 cd <repository-folder>
 ```
+
 ### 2. Install Dependencies
 Ensure Node.js is installed, then run:
-```
+```bash
 npm install
 ```
+
 ### 3. Configure Environment Variables
-Create a .env file in the project root directory with the following keys:
-```
-IP_STACK_API_KEY=<your_ipstack_api_key
+Create a `.env` file in the project root directory with the following keys:
+```env
+IP_STACK_API_KEY=<your_ipstack_api_key>
 DB_HOST=<database_host>
 DB_USER=<database_user>
 DB_PASSWORD=<database_password>
 DB_NAME=<database_name>
 ```
+
 ### 4. Set Up the Database
-Create a MySQL database named geofence.
-Import the database schema (if available) or create a table structure to store IP query logs. You can use the following SQL script to set up the necessary tables:
-'''
+Create a MySQL database named `geofence` and set up the required tables. Use the following SQL script:
+```sql
 CREATE DATABASE geofence;
 USE geofence;
 
@@ -46,63 +59,89 @@ CREATE TABLE ip_query_logs (
     ip_address VARCHAR(45) NOT NULL,
     country VARCHAR(100),
     region VARCHAR(100),
-    city VARCHAR  (100),
+    city VARCHAR(100),
     latitude DECIMAL(10,7),
-    longitude DECIMAL(10, 7),
+    longitude DECIMAL(10,7),
     risk_level VARCHAR(50),
-    query_time TIMESTAMP DEFAULT CURRENT _TIMESTAMP
+    query_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-'''
+```
 
 ## Running the Application
 
 ### 1. Start the Development Server
 Start the backend server using:
-```
+```bash
 node server.js
 ```
+
 ### 2. Access the Application
 Open a browser and navigate to:
 ```
 http://localhost:3000
 ```
-## Testing the Application
+
+## Testing
 
 ### 1. Run Unit Tests
-If unit tests are written, use a testing framework like Mocha or Jest:
-```
+If unit tests are available, run them using a testing framework like Mocha or Jest:
+```bash
 npm test
 ```
+
 ### 2. Manual Testing
-Open the application in the browser.
-Test the input functionality by entering valid and invalid IP addresses.
-Verify the response accuracy by checking if the geographical and rok data displayed matches the expected results for a given IP address. For UI behavior, ensure that input fields accept valid IP addresses, display error messages for invalid inputs, and maintain responsiveness.
-
-## Known Issues and Roadmap
-### Known Issues
-1. Limited API Key Usage: IP Stack API has a limited number of free calls.
-- **Temporary Fix: Use caching in MySQL to reduce API calls.**
-2. Error Handling: The application doesn't provide detailed error messages for invalid IP addresses or network errors.
-- **Fix in Progress: Enhance error handling on both frontend and backend.**
-
-### Roadmap
-- **User Authentication: Add user login to track and personalize IP query history.**
-- **Enhanced Visualization: Use advanced libraries like D3.js for more interactive maps.**
-- **Mobile Optimization: Improve responsiveness for smaller devices.**
-- **Multi-Language Support: Add localization for international users.**
+- Open the application in the browser.
+- Test the input functionality by entering valid and invalid IP addresses.
+- Verify the displayed data for accuracy and UI responsiveness.
 
 ## API Documentation
-```
-/docs              - Documentation folder (developer manual and related files)
-/index.html        - Main HTML file
-/about.html        - About page
-/help.html         - Help page
-/styles.css        - CSS styles for the application
-/scripts.js        - JavaScript logic (API integration)
-/server.js         - Backend server (if applicable)
-/.env              - Environment variables file
-```
 
+### Endpoints
 
+#### GET /api/ip/:ipAddress
+- **Description**: Retrieves geographical and security risk data for a given IP address.
+- **Parameters**: `ipAddress` - The IP address to query.
+- **Response**:
+  ```json
+  {
+    "ip_address": "8.8.8.8",
+    "country": "United States",
+    "region": "California",
+    "city": "Mountain View",
+    "latitude": 37.386,
+    "longitude": -122.0838,
+    "risk_level": "Low"
+  }
+  ```
 
+#### POST /api/ip/log
+- **Description**: Logs an IP query to the database.
+- **Request Body**:
+  ```json
+  {
+    "ip_address": "8.8.8.8",
+    "country": "United States",
+    "region": "California",
+    "city": "Mountain View",
+    "latitude": 37.386,
+    "longitude": -122.0838,
+    "risk_level": "Low"
+  }
+  ```
+- **Response**: Success or error message.
+
+## Known Issues
+- **Limited API Key Usage**: The IP Stack API has a limited number of free calls.
+  - **Workaround**: Implement caching in MySQL to reduce API calls.
+- **Error Handling**: Limited error messages for invalid IP addresses or network issues.
+  - **Planned Improvement**: Enhance error handling in the frontend and backend.
+
+## Roadmap
+- **User Authentication**: Add user login for personalized IP query history.
+- **Advanced Visualization**: Use libraries like D3.js for interactive maps.
+- **Mobile Optimization**: Improve responsiveness for smaller devices.
+- **Multi-Language Support**: Add localization for international users.
+
+---
+
+Documentation for developers is available in the [docs folder](./docs).
