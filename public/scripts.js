@@ -1,5 +1,3 @@
-let map; // Declare a global map variable
-
 async function ipLookUp(ip) {
     return fetch(`http://localhost:3000/getIPData?ip=${ip}`)
         .then((response) => {
@@ -38,10 +36,10 @@ async function safety(ip) {
         });
 }
 
+let map;
 async function mapData() {
     const mapContainer = document.getElementById("map");
     mapContainer.innerHTML = "";
-
     const ip =
         document.getElementById("octet1").value +
         "." +
@@ -51,9 +49,6 @@ async function mapData() {
         "." +
         document.getElementById("octet4").value;
 
-    console.log("IP:", ip);
-
-    // Fetch IP lookup data
     const ipData = await ipLookUp(ip);
     console.log("IP Data:", ipData);
 
@@ -62,13 +57,11 @@ async function mapData() {
         return;
     }
 
-    // Destroy the existing map instance if it exists
     if (map) {
         map.remove();
     }
 
-    // Initialize the map with the new data
-    map = L.map("map").setView([ipData.latitude, ipData.longitude], 6); // Adjust zoom as needed
+    map = L.map("map").setView([ipData.latitude, ipData.longitude], 6);
 
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
@@ -76,10 +69,8 @@ async function mapData() {
             '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
-    // Add a marker to the map
     L.marker([ipData.latitude, ipData.longitude]).addTo(map);
 
-    // Fetch fraud data
     const fraudData = await safety(ip);
     console.log("Fraud Data:", fraudData);
 

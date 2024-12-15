@@ -1,24 +1,21 @@
 const express = require("express");
 const axios = require("axios");
-const path = require("path");
 
 const app = express();
 const PORT = 3000;
 
-// API Keys (Hardcoded)
+// API keys
 const IPSTACK_API_KEY = "5fcc6e30d326f1a4c65bc34082c99eae";
 const IP_QUALITYSCORE_API_KEY = "ZFdPCNJxEToPwn6INfbMI4nwPFaJToMl";
 
 // Supabase Configuration
 const SUPABASE_URL = "https://vlkynsbtdiubxpancxnw.supabase.co";
-const SUPABASE_API_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsa3luc2J0ZGl1YnhwYW5jeG53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMzNDM4NjcsImV4cCI6MjA0ODkxOTg2N30.0mu_4oKl-ab-EwL4r51NvVcL7ybczVU9Gl28C6VsQOc";
+const SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsa3luc2J0ZGl1YnhwYW5jeG53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMzNDM4NjcsImV4cCI6MjA0ODkxOTg2N30.0mu_4oKl-ab-EwL4r51NvVcL7ybczVU9Gl28C6VsQOc";
 const SUPABASE_TABLE = "fraud_scores";
 
-// Middleware to parse JSON bodies
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(__dirname + "/public"));
 
 // IP lookup function using IPStack API
 async function ipLookUp(ip) {
@@ -52,7 +49,7 @@ async function getFraudScoreFromSupabase(ip) {
             {
                 headers: {
                     apiKey: SUPABASE_API_KEY,
-                    Authorization: `Bearer ${SUPABASE_API_KEY}`,
+                    Authorization: `${SUPABASE_API_KEY}`,
                 },
                 params: {
                     ip: `eq.${ip}`,
@@ -76,7 +73,7 @@ async function storeFraudScoreInSupabase(ip, fraudScore) {
             {
                 headers: {
                     apiKey: SUPABASE_API_KEY,
-                    Authorization: `Bearer ${SUPABASE_API_KEY}`,
+                    Authorization: `${SUPABASE_API_KEY}`,
                     "Content-Type": "application/json",
                 },
             }
@@ -87,11 +84,10 @@ async function storeFraudScoreInSupabase(ip, fraudScore) {
     }
 }
 
-// Default route for the root URL
-
-app.get('/', (req, res) => {
-    res.sendFile('public/index.html', { root: __dirname });
-  });
+// Default
+app.get("/", (req, res) => {
+    res.sendFile("public/index.html", { root: __dirname });
+});
 
 // Endpoint to get location data
 app.get("/getIPData", async (req, res) => {
@@ -157,4 +153,3 @@ app.get("/getFraudScore", async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
-
