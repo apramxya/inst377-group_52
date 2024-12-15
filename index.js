@@ -98,7 +98,7 @@ app.get("/getIPData", async (req, res) => {
 
     try {
         const locationData = await ipLookUp(ip);
-        res.json(locationData);
+        return res.json(locationData);
     } catch (error) {
         console.error("Error in /getIPData:", error.message);
         res.status(500).json({
