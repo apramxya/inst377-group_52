@@ -21,7 +21,6 @@ The Developer Manual can be found in [Developer Manual](#developer-manual)..
 ## System Requirements
 - **Operating System**: Windows, macOS, or Linux
 - **Node.js**: Version 14 or above
-- **MySQL**: Version 8 or above
 - **Web Browser**: Any modern browser
 
 ## Installation Guide
