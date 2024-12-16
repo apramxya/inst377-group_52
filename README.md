@@ -50,7 +50,7 @@ IP_QUALITYSCORE_API_KEY = <your_qualityscore_api_key>
 ### 1. Start the Development Server
 Start the backend server using:
 ```bash
-node server.js
+node index.js
 ```
 
 ### 2. Access the Application
