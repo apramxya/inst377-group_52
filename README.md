@@ -12,7 +12,7 @@ GeoFence Security IP Address Locator is a web application designed to enhance cy
 - Microsoft Edge
 
 ## Link to Developer Manual
-The Developer Manual can be found in the [docs folder](./docs).
+The Developer Manual can be found in [Developer Manual](#developer-manual)..
 
 ---
 
