@@ -70,37 +70,24 @@ http://localhost:3000
 
 ### Endpoints
 
-#### GET /api/ip/:ipAddress
-- **Description**: Retrieves geographical and security risk data for a given IP address.
-- **Parameters**: `ipAddress` - The IP address to query.
-- **Response**:
-  ```json
-  {
-    "ip_address": "8.8.8.8",
-    "country": "United States",
-    "region": "California",
-    "city": "Mountain View",
-    "latitude": 37.386,
-    "longitude": -122.0838,
-    "risk_level": "Low"
-  }
-  ```
+#### GET
+### **1. GET /**
+- **Description**: Serves the main HTML file (`index.html`) from the `public` directory.
 
-#### POST /api/ip/log
-- **Description**: Logs an IP query to the database.
-- **Request Body**:
-  ```json
-  {
-    "ip_address": "8.8.8.8",
-    "country": "United States",
-    "region": "California",
-    "city": "Mountain View",
-    "latitude": 37.386,
-    "longitude": -122.0838,
-    "risk_level": "Low"
-  }
-  ```
-- **Response**: Success or error message.
+---
+
+### **2. GET /getIPData**
+- **Description**: Fetches location details for a given IP address.
+
+### **3. GET /getFraudScore**
+- **Description**: Retrieves the fraud score for an IP address.
+    
+#### API
+### **2. IPStack API**
+- **Purpose**: Provides geographic location data for an IP address.
+
+### **2. IPQualityScore API**
+- **Purpose**: Provides fraud detection scores for an IP address.
 
 ## Known Issues
 - **Limited API Key Usage**: The IP Stack API and Quality Score have a limited number of free calls.
