@@ -34,36 +34,15 @@ cd <repository-folder>
 ### 2. Install Dependencies
 Ensure Node.js is installed, then run:
 ```bash
-npm install
+npm i
 ```
 
-### 3. Configure Environment Variables
+### 3. Configure Key Variables
 Create a `.env` file in the project root directory with the following keys:
 ```env
 IP_STACK_API_KEY=<your_ipstack_api_key>
-DB_HOST=<database_host>
-DB_USER=<database_user>
-DB_PASSWORD=<database_password>
-DB_NAME=<database_name>
-```
+IP_QUALITYSCORE_API_KEY=<your_qualityscore_api_key>
 
-### 4. Set Up the Database
-Create a MySQL database named `geofence` and set up the required tables. Use the following SQL script:
-```sql
-CREATE DATABASE geofence;
-USE geofence;
-
-CREATE TABLE ip_query_logs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    ip_address VARCHAR(45) NOT NULL,
-    country VARCHAR(100),
-    region VARCHAR(100),
-    city VARCHAR(100),
-    latitude DECIMAL(10,7),
-    longitude DECIMAL(10,7),
-    risk_level VARCHAR(50),
-    query_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 ```
 
 ## Running the Application
@@ -82,13 +61,7 @@ http://localhost:3000
 
 ## Testing
 
-### 1. Run Unit Tests
-If unit tests are available, run them using a testing framework like Mocha or Jest:
-```bash
-npm test
-```
-
-### 2. Manual Testing
+### 1. Manual Testing
 - Open the application in the browser.
 - Test the input functionality by entering valid and invalid IP addresses.
 - Verify the displayed data for accuracy and UI responsiveness.
@@ -130,8 +103,8 @@ npm test
 - **Response**: Success or error message.
 
 ## Known Issues
-- **Limited API Key Usage**: The IP Stack API has a limited number of free calls.
-  - **Workaround**: Implement caching in MySQL to reduce API calls.
+- **Limited API Key Usage**: The IP Stack API and Quality Score have a limited number of free calls.
+  - **Workaround**: Implement caching in Supabase to reduce API calls.
 - **Error Handling**: Limited error messages for invalid IP addresses or network issues.
   - **Planned Improvement**: Enhance error handling in the frontend and backend.
 
