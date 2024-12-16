@@ -74,8 +74,6 @@ http://localhost:3000
 ### **1. GET /**
 - **Description**: Serves the main HTML file (`index.html`) from the `public` directory.
 
----
-
 ### **2. GET /getIPData**
 - **Description**: Fetches location details for a given IP address.
 
