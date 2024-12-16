@@ -40,8 +40,8 @@ npm i
 ### 3. Configure Key Variables
 Create a `.env` file in the project root directory with the following keys:
 ```env
-IP_STACK_API_KEY=<your_ipstack_api_key>
-IP_QUALITYSCORE_API_KEY=<your_qualityscore_api_key>
+IP_STACK_API_KEY = <your_ipstack_api_key>
+IP_QUALITYSCORE_API_KEY = <your_qualityscore_api_key>
 
 ```
 
