@@ -90,8 +90,6 @@ http://localhost:3000
 ## Known Issues
 - **Limited API Key Usage**: The IP Stack API and Quality Score have a limited number of free calls.
   - **Workaround**: Implement caching in Supabase to reduce API calls.
-- **Error Handling**: Limited error messages for invalid IP addresses or network issues.
-  - **Planned Improvement**: Enhance error handling in the frontend and backend.
 
 ## Roadmap For Future Development
 - **User Authentication**: Add user login for personalized IP query history.
